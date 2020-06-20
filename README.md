@@ -1,3 +1,3 @@
 # MemoApp
 React Nativeを使用したメモ帳アプリ
-これはテストです
+IOS, Androidに対応
