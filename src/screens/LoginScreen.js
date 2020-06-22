@@ -1,5 +1,7 @@
 import React from 'react';
-import { StyleSheet, Text,  View, TextInput, TouchableHighlight } from 'react-native';
+import { StyleSheet, Text,  View, TextInput } from 'react-native';
+import { TouchableHighlight } from 'react-native-gesture-handler';
+import firebase from 'firebase';
 
 class LoginScreen extends React.Component {
     state = {
@@ -8,6 +10,13 @@ class LoginScreen extends React.Component {
     }
 
     handleSubmit() {
+        firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(() => {
+                this.props.navigation.navigate('Home');
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     render() {
@@ -37,7 +46,7 @@ class LoginScreen extends React.Component {
                 <TouchableHighlight style={styles.button1} onPress={this.handleSubmit.bind(this)} underlayColor="#D83B77">
                     <Text style={styles.buttonTitle}>ログイン</Text>
                 </TouchableHighlight>
-                <TouchableHighlight style={styles.button2} onPress={() => {}} underlayColor="#06B1A3">
+                <TouchableHighlight style={styles.button2} onPress={() => { this.props.navigation.navigate('Signup'); }} underlayColor="#06B1A3">
                     <Text style={styles.buttonTitle}>新規登録</Text>
                 </TouchableHighlight>
 
