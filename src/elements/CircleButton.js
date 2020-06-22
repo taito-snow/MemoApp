@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 import * as Font from 'expo-font';
 import { createIconSet } from '@expo/vector-icons';
 import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
+import { TouchableHighlight } from 'react-native-gesture-handler';
 
 const CustomIcon = createIconSet({
     pencil: '\uf303',
@@ -24,7 +25,7 @@ class CircleButton extends React.Component {
     }
 
     render() {
-        const { name, style, color } = this.props;
+        const { name, style, color, onPress } = this.props;
 
         let bgColor = '#FF50BC';
         let textColor = '#fff';
@@ -35,31 +36,46 @@ class CircleButton extends React.Component {
         }
 
         return (
-            <View style={[styles.circleAddButton, style, { backgroundColor: bgColor, }]}>
-                {
-                    this.state.fontLoaded ? (
-                        <CustomIcon name={name} style={[styles.circleAddButtonTitle, { color: textColor, }]} />
-                     ) : null
-                }
+            <View style={[styles.container, style]}>
+                <TouchableHighlight onPress={onPress} underlayColor="transparent">
+                    <View style={[styles.circleAddButton, { backgroundColor: bgColor }]}>
+                        {
+                            this.state.fontLoaded ? (
+                                <CustomIcon name={name} style={[styles.circleAddButtonTitle, { color: textColor }]} />
+                             ) : null
+                        }
+                    </View>
+                </TouchableHighlight>
             </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    circleAddButton: {
+    container: {
+        width: 52,
+        height: 52,
         position: 'absolute',
         bottom: 38,
         right: 38,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2, },
+        shadowOpacity: 0.4,
+        shadowRadius: 3,
+    },
+    circleAddButton: {
+        // position: 'absolute',
+        // bottom: 38,
+        // right: 38,
         width: 52,
         height: 52,
         borderRadius: 26,
         justifyContent: 'center',
         alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2, },
-        shadowOpacity: 0.4,
-        shadowRadius: 3,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 2, },
+        // shadowOpacity: 0.4,
+        // shadowRadius: 3,
     },
     circleAddButtonTitle: {
         fontFamily: 'FontAwsome',
