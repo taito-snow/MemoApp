@@ -4,7 +4,8 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 
 class MemoList extends React.Component {
     render() {
-        return (
+      console.log(this.props.memoList);
+      return (
         <View style={styles.memoList}>
           <TouchableHighlight onPress={() => { this.props.navigation.navigate('MemoDetail'); }}>
             <View style={styles.memoListItems}>
@@ -26,7 +27,7 @@ class MemoList extends React.Component {
           </TouchableHighlight>
         </View>
         );
-    }
+      }
 }
 
 const styles = StyleSheet.create({
