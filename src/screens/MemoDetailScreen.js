@@ -3,20 +3,37 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import CircleButton from '../elements/CircleButton';
 
+const dateString = (date) => {
+    if (date == null) { return ''; }
+    const dateObject = date.toDate();
+    return dateObject.toISOString().split('T')[0];
+};
+
 class MemoDetailScreen extends React.Component {
+    state = {
+        memo: {},
+    }
+
+    UNSAFE_componentWillMount() {
+        const { params } = this.props.navigation.state;
+        console.log(params);
+        this.setState({ memo: params.memo });
+    }
+
     render() {
+        const { memo } = this.state;
         return (
             <View style={styles.container}>
                 <View>
                     <View style={styles.memoHeader}>
-                        <Text style={styles.memoHeaderTitle}>構造のアイデア</Text>
-                        <Text style={styles.memoHeaderDate}>2020/6/20</Text>
+                        <Text style={styles.memoHeaderTitle}>{memo.body.substring(0, 10)}</Text>
+                        <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
                     </View>
                 </View>
 
                 <View style={styles.memoContents}>
-                    <Text>
-                        これは構造のアイデアです。
+                    <Text style={styles.memoBody}>
+                        {memo.body}
                     </Text>
                 </View>
 
@@ -54,6 +71,10 @@ var styles = StyleSheet.create ({
         paddingLeft: 20,
         backgroundColor: '#fff',
         flex: 1,
+    },
+    memoBody: {
+        lineHeight: 21,
+        fontSize: 17,
     },
     cicleEditButton: {
         top: 123,
