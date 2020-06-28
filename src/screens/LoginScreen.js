@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text,  View, TextInput } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import firebase from 'firebase';
+import { StackActions, NavigationActions } from 'react-navigation';
 
 class LoginScreen extends React.Component {
     state = {
@@ -11,12 +12,16 @@ class LoginScreen extends React.Component {
 
     handleSubmit() {
         firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then((user) => {
-                console.log('success', user);
-                this.props.navigation.navigate('Home');
+            .then(() => {
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [
+                        NavigationActions.navigate({ routeName: 'Home' }),
+                    ],
+                });
+                this.props.navigation.dispatch(resetAction);
             })
-            .catch((error) => {
-                console.log(error);
+            .catch(() => {
             });
     }
 
