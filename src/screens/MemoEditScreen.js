@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, View, TextInput } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard } from 'react-native';
 
 import firebase from 'firebase';
 
@@ -44,7 +45,11 @@ class MemoEditScreen extends React.Component {
 
     render() {
         return(
-            <ScrollView scrollEnabled={false} contentContainerStyle={{ flex: 1, justifyContent: 'center' }}>
+            <TouchableWithoutFeedback
+                onPress={() => {
+                    Keyboard.dismiss()
+                }}
+            >
                 <View style={styles.container}>
                     <TextInput
                         style={styles.memoEditInput}
@@ -55,7 +60,7 @@ class MemoEditScreen extends React.Component {
                     />
                     <CircleButton name="check" onPress={ this.handlePress.bind(this) } />
                 </View>
-            </ScrollView>
+            </TouchableWithoutFeedback>
         );
     }
 }
@@ -64,10 +69,11 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         width: '100%',
+        backgroundColor: '#fff',
     },
     memoEditInput: {
         backgroundColor: '#fff',
-        flex: 1,
+        // flex: 1,
         paddingTop: 32,
         paddingLeft: 16,
         paddingRight: 16,

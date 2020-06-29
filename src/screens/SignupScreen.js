@@ -38,6 +38,7 @@ class SignupScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="Email Address"
+                    keyboardType="email-address"
                 />
                 <TextInput
                     style={styles.input}

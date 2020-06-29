@@ -6,8 +6,8 @@ import { StackActions, NavigationActions } from 'react-navigation';
 
 class LoginScreen extends React.Component {
     state = {
-        email: 'test@test.com',
-        password: 'test2020',
+        email: '',
+        password: '',
     }
 
     handleSubmit() {
@@ -38,6 +38,7 @@ class LoginScreen extends React.Component {
                     autoCapitalize="none"
                     autoCorrect={false}
                     placeholder="Email Address"
+                    keyboardType="email-address"
                 />
                 <TextInput
                     style={styles.input}
