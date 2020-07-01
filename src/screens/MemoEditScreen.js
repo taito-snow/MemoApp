@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
-import { InputAccessoryView, ScrollView } from 'react-native';
+import { StyleSheet, View, TextInput, ScrollView } from 'react-native';
 
 import firebase from 'firebase';
 
