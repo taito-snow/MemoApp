@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, TextInput } from 'react-native';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { InputAccessoryView, ScrollView } from 'react-native';
 
 import firebase from 'firebase';
 
@@ -45,12 +45,8 @@ class MemoEditScreen extends React.Component {
 
     render() {
         return(
-            <TouchableWithoutFeedback
-                onPress={() => {
-                    Keyboard.dismiss()
-                }}
-            >
-                <View style={styles.container}>
+            <View style={styles.container}>
+                <ScrollView>
                     <TextInput
                         style={styles.memoEditInput}
                         multiline
@@ -58,9 +54,9 @@ class MemoEditScreen extends React.Component {
                         onChangeText={(text) => { this.setState({ body: text }) }}
                         textAlignVertical="top"
                     />
-                    <CircleButton name="check" onPress={ this.handlePress.bind(this) } />
-                </View>
-            </TouchableWithoutFeedback>
+                </ScrollView>
+                <CircleButton name="check" onPress={ this.handlePress.bind(this) } />
+            </View>
         );
     }
 }
